@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.manny.todolist.data.CheckList;
 import com.example.manny.todolist.data.Task;
 import com.example.manny.todolist.screen.TaskFragment;
 import com.firebase.client.Firebase;
@@ -15,7 +16,7 @@ import com.firebase.client.Firebase;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements TaskListFragment.OnTaskListFragmentListener, TaskFragment.OnTaskFragmentListener{
+public class MainActivity extends AppCompatActivity implements TaskListFragment.OnTaskListFragmentListener, TaskFragment.OnTaskFragmentListener, CheckBoxListFragment.OnCheckBoxListFragmentListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +32,12 @@ public class MainActivity extends AppCompatActivity implements TaskListFragment.
             }
 
             TaskListFragment taskListFragment = new TaskListFragment();
+            CheckBoxListFragment checkBoxListFragment = new CheckBoxListFragment();
 
             //Add fragment to container layout
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container_layout, taskListFragment).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.container_layout, checkBoxListFragment).commit();
         }
     }
 
@@ -70,6 +73,11 @@ public class MainActivity extends AppCompatActivity implements TaskListFragment.
         replaceFragment(TaskFragment.newInstance(task));
     }
 
+
+    @Override
+    public void onCheckBoxSelected(CheckList checkList) {
+
+    }
 
     @Override
     public void onTaskUpdated(Task task) {

@@ -1,9 +1,7 @@
 package com.example.manny.todolist;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
@@ -14,10 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
+import com.example.manny.todolist.data.CheckList;
 import com.example.manny.todolist.data.Task;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
@@ -70,46 +69,26 @@ public class TaskListFragment extends Fragment {
 
         Firebase.setAndroidContext(getActivity());
         myFireBase = new Firebase(FIRE_BASE_URL + Task.TASK_ROUTE);
-        myFireBase.addChildEventListener(new TasksChildEventListener());
+        //myFireBase.addChildEventListener(new TasksChildEventListener());
 
     }
 
-    class TasksChildEventListener implements ChildEventListener{
-
-        @Override
-        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-        }
-
-        @Override
-        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-        }
-
-        @Override
-        public void onChildRemoved(DataSnapshot dataSnapshot) {
-            String taskId = dataSnapshot.getKey();
-            ArrayList<Task> myTasks = new ArrayList<>();
-            for (Task tk : myTasks){
-                if(taskId.equals(tk.getTaskId())){
-                    myTasks.remove(tk);
-                    removeTask(tk);
-                    Log.d("flow", "went threw......" );
-                    break;
-                }
-            }
-        }
-
-        @Override
-        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-        }
-
-        @Override
-        public void onCancelled(FirebaseError firebaseError) {
-
-        }
-    }
+//    class TasksChildEventListener implements ChildEventListener{
+//
+//        @Override
+//        public void onChildRemoved(DataSnapshot dataSnapshot) {
+//            String taskId = dataSnapshot.getKey();
+//            ArrayList<Task> myTasks = new ArrayList<>();
+//            for (Task tk : myTasks){
+//                if(taskId.equals(tk.getTaskId())){
+//                    myTasks.remove(tk);
+//                    removeTask(tk);
+//                    Log.d("flow", "went threw......" );
+//                    break;
+//                }
+//            }
+//        }
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -119,6 +98,7 @@ public class TaskListFragment extends Fragment {
         recyclerView = (RecyclerView) layout.findViewById(R.id.toDoListRecycleView);
 
         fab = (ImageButton) layout.findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

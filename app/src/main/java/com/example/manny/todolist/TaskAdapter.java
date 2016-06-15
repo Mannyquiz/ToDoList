@@ -39,17 +39,17 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder>{
 
             textView = (TextView) view.findViewById(R.id.taskName);
             layout = (LinearLayout) view.findViewById(R.id.taskRowLayout);
+
             layout.setOnClickListener(this);
 
-            layout.setOnLongClickListener(new View.OnLongClickListener(){
-                @Override
-                public boolean onLongClick(View v) {
-                    Log.d("flow", "Long clicked");
-                    return true;
-                }
-            });
+//            layout.setOnLongClickListener(new View.OnLongClickListener(){
+//                @Override
+//                public boolean onLongClick(View v) {
+//                    Log.d("flow", "Long clicked");
+//                    return true;
+//                }
+//            });
         }
-
 
         public TextView getTextView() {
             return textView;
@@ -60,20 +60,18 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder>{
             switch (v.getId()) {
                 case R.id.taskRowLayout:
                     if(mCallBack != null) {
-                        Log.d("flow", "Clicked on");
+                        Log.d("flow", "CLICKED ON TASK");
                        mCallBack.onTaskSelected(tasks.get(getAdapterPosition()));
                     }
                     break;
             }
         }
-
-
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.todolist_row, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_row, parent, false);
 
         return new ViewHolder(v);
     }

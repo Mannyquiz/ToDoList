@@ -14,12 +14,12 @@
             android:checked="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <TextView
+
+        <EditText android:id="@+id/listView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Example"
-            android:id="@+id/listView" />
+            android:text="Example" />
 
     </LinearLayout>
 

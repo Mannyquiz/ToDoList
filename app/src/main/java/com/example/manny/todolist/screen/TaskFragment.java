@@ -99,7 +99,7 @@ public class TaskFragment extends Fragment {
 
         if(task.getTaskTitle() == null && task.getTask() == null){
             Log.d("flow", "when empty");
-            task.setTaskTitle("No Title");
+            taskTitle.setText("No Title");
         }
 
         task.setTask(taskDescription.getEditableText().toString());
